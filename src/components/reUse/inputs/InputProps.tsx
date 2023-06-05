@@ -11,6 +11,9 @@ const InputProps: React.FC<iInPut> = ({
 
 }) => {
 
+
+
+
     const {
         actualName,
         setActualName,
@@ -59,6 +62,7 @@ const InputProps: React.FC<iInPut> = ({
                     <Input
                         placeholder={`${email2}`}
                         type='email'
+                        required
                         value={actualEmail}
                         onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                             setActualEmail!(e.target.value)
@@ -164,17 +168,19 @@ const Input = styled.input`
 outline: none;
 border:1px solid silver;
 border-radius: 4px;
-width: 300px;
-height: 40px;
+width: 280px;
+height: 35px;
 padding-left: 10px;
 margin-top:5px;
+font-size: 12px;
 :focus{
     outline:1px solid #228BE6;
     border: 1px solid transparent;
 }
 
 ::placeholder{
-    color: silver
+    color: silver;
+    font-family: Poppins;
 }
 `
 
@@ -183,6 +189,8 @@ display:flex;
 font-weight: 700;
 color: rgba(0,0,0,0.6);
 margin:0;
+
+font-size: 12px;
 p{
     margin-left: 3px;
     margin-top:0;

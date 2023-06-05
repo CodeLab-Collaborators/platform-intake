@@ -1,6 +1,7 @@
 
 export interface iButton {
     title?: string;
+    m?: string;
     color?: string;
     bg?: string;
     icon?: any
@@ -35,6 +36,10 @@ export interface iGlobal {
     actualName?: string;
     setActualName?: React.Dispatch<React.SetStateAction<string>>;
 
+
+    actualImage?: string;
+    setActualImage?: React.Dispatch<React.SetStateAction<string>>;
+
     actualEmail?: string;
     setActualEmail?: React.Dispatch<React.SetStateAction<string>>;
 
@@ -46,8 +51,6 @@ export interface iGlobal {
 
     userState?: {} | null;
     setUserState?: React.Dispatch<React.SetStateAction<{} | null>>;
-
-
 }
 
 
@@ -55,4 +58,5 @@ export interface iUser {
     name?: string;
     email?: string;
     password?: string;
+    image?: string;
 }

@@ -6,11 +6,9 @@ import { AiOutlineTwitter } from "react-icons/ai"
 import Button from '../../components/static/Button'
 import InputProps from '../../components/reUse/inputs/InputProps'
 import { GlobalContext } from '../../global/GlobalProvider'
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 
 const SignUp = () => {
-
-
     const {
         actualName,
 
@@ -18,12 +16,20 @@ const SignUp = () => {
 
         actualPassword,
 
-        actualConfirm,
+        setUserState,
 
-        setUserState
-
+        setActualImage
 
     } = useContext(GlobalContext)
+
+    const [image, setImage] = useState<string>("")
+
+    const onHandle = (e: any) => {
+        const file = e.target.files[0]
+        const save = URL.createObjectURL(file)
+        setImage(save)
+
+    }
 
     return (
         <div>
@@ -48,6 +54,23 @@ const SignUp = () => {
                         <Line />
                     </Display>
 
+                    <ImageHolder>
+                        <Image
+
+                            alt=""
+                            src={image ? image : 'https://i.stack.imgur.com/l60Hf.png'}
+                        />
+                        <ImageInput
+                            id="pix"
+                            type='file'
+                            accept='image/jpg, image/png, image/jpeg'
+                            onChange={onHandle}
+                        />
+                        <ImageLabel
+                            htmlFor='pix'
+                        >Upload Image</ImageLabel>
+                    </ImageHolder>
+
                     <InputProps
                         name
                         name1="Name"
@@ -62,9 +85,9 @@ const SignUp = () => {
                         password2="Please Enter your Password"
 
 
-                        confirm
-                        confirm1="password"
-                        confirm2="Please confirm your Password"
+                        // confirm
+                        // confirm1="password"
+                        // confirm2="Please confirm your Password"
                     />
 
                     <ButtonHolder>
@@ -76,15 +99,15 @@ const SignUp = () => {
                             <Button
                                 title="Sign Up"
                                 bg="#228be6"
+                                m=''
                                 color="white"
                                 onClick={() => {
-                                    console.log(
-                                        actualConfirm
-                                    )
+
                                     setUserState!({
                                         name: actualName,
                                         email: actualEmail,
-                                        password: actualPassword
+                                        password: actualPassword,
+                                        image: image
                                     })
                                 }}
                             />
@@ -97,6 +120,41 @@ const SignUp = () => {
 }
 
 export default SignUp
+
+const Image = styled.img`
+width: 80px;
+height: 80px;
+border-radius: 50%;
+border: 1px solid silver;
+margin: 10px 0;
+object-fit: cover;
+`
+
+const ImageLabel = styled.label`
+font-weight: 700;
+padding: 4px 10px;
+background: purple;
+border-radius:3px;
+color: white;
+font-size: 10px;
+transition: all 380ms;
+
+:hover{
+    cursor: pointer;
+    transform: translate(0px, -5px);
+}
+
+`
+
+const ImageInput = styled.input`
+display: none;
+`
+
+const ImageHolder = styled.div`
+display: flex;
+flex-direction: column;
+align-items: center;
+`
 
 const Space = styled.div`
 flex: 1
@@ -111,7 +169,7 @@ margin: 20px 0;
 
 const Line = styled.div`
 border-bottom: 1px solid silver;
-width: 28%;
+width: 25%;
 
 `
 
@@ -139,7 +197,7 @@ justify-content: center;
 align-items: center;
 `
 const Main = styled.div`
-padding: 20px 30px;
+padding: 20px 20px;
 box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
 border-radius:5px;
 `

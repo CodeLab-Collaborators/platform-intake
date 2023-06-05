@@ -10,6 +10,7 @@ export const GlobalProvider: React.FC<PropsWithChildren> = ({ children }) => {
     const [actualEmail, setActualEmail] = useState<string>("")
     const [actualPassword, setActualPassword] = useState<string>("")
     const [actualConfirm, setActualConfirm] = useState<string>("")
+    const [actualImage, setActualImage] = useState<string>("")
 
     const [userState, setUserState] = useState<iUser | null>({})
 
@@ -18,6 +19,9 @@ export const GlobalProvider: React.FC<PropsWithChildren> = ({ children }) => {
         <GlobalContext.Provider value={{
             actualName,
             setActualName,
+
+            actualImage,
+            setActualImage,
 
             actualEmail,
             setActualEmail,

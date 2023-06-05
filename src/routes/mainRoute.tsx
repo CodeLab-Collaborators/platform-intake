@@ -7,6 +7,8 @@ import SignIn from "../pages/Register/SignIn"
 import ForgotPassword from "../pages/Register/ForgotPassword"
 import ChangePassword from "../pages/Register/ChangePassword"
 import HomeScreen from "../pages/Home/HomeScreen"
+import MainLayout from "../components/block/MainLayout"
+import MainPage from "../pages/MainPage/MainPage"
 
 export const mainRoute = createBrowserRouter([
     {
@@ -41,6 +43,17 @@ export const mainRoute = createBrowserRouter([
                 path: "*",
                 element: <Error />
             },
+        ]
+    },
+
+    {
+        path: "/auth",
+        element: <MainLayout />,
+        children: [
+            {
+                index: true,
+                element: <MainPage />
+            }
         ]
     }
 ])

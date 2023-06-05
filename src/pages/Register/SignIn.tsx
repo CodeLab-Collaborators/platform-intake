@@ -62,7 +62,7 @@ const SignIn = () => {
 
                         <Space />
                         {
-                            actualPassword === userState?.password && actualEmail === userState?.email ? <Link to="/home" style={{ textDecoration: "none" }} >
+                            actualPassword === userState?.password && actualEmail === userState?.email ? <Link to="/auth" style={{ textDecoration: "none" }} >
                                 <Button
                                     title="Sign In"
                                     bg="#228be6"
