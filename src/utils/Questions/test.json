@@ -1,0 +1,122 @@
+[
+  {
+    "_id": "647f2dc22a461cc031f23b12",
+    "question": "If you drop a white hat into the red sea, what does it become?",
+    "answer": "Wet",
+    "a": "Wet",
+    "b": "White Red",
+    "c": "Red",
+    "d": "Reddish White",
+    "createdAt": "2023-06-06T12:59:46.452Z",
+    "updatedAt": "2023-06-06T12:59:46.452Z",
+    "__v": 0
+  },
+  {
+    "_id": "647f2e3e2a461cc031f23b1b",
+    "question": "What come once in a minute, twice in a moment, but never in a thousand years?",
+    "answer": "The letter M",
+    "a": "The letter N",
+    "b": "The letter T",
+    "c": "The letter M",
+    "d": "The letter Years",
+    "createdAt": "2023-06-06T13:01:50.843Z",
+    "updatedAt": "2023-06-06T13:01:50.843Z",
+    "__v": 0
+  },
+  {
+    "_id": "647f2f3a2a461cc031f23b21",
+    "question": "In how many different ways can the letter of the world 'CORPORATION' be arranged so that the vowels always come together?",
+    "answer": "10,080",
+    "a": "10,080",
+    "b": "5760",
+    "c": "2880",
+    "d": "50400",
+    "createdAt": "2023-06-06T13:06:02.705Z",
+    "updatedAt": "2023-06-06T13:06:02.705Z",
+    "__v": 0
+  },
+  {
+    "_id": "647f2f802a461cc031f23b25",
+    "question": "What can travel around the world while staying in a corner?",
+    "answer": "Morning Sun",
+    "a": "Your Shadow",
+    "b": "Nothing",
+    "c": "Postage Stamp",
+    "d": "Morning Sun",
+    "createdAt": "2023-06-06T13:07:12.562Z",
+    "updatedAt": "2023-06-06T13:07:12.562Z",
+    "__v": 0
+  },
+  {
+    "_id": "647f2fd92a461cc031f23b29",
+    "question": "A farmer has 17 sheep and all but nine die, How many are left?",
+    "answer": "Eight",
+    "a": "None",
+    "b": "Nine",
+    "c": "Eight",
+    "d": "Seventeen",
+    "createdAt": "2023-06-06T13:08:41.200Z",
+    "updatedAt": "2023-06-06T13:08:41.200Z",
+    "__v": 0
+  },
+  {
+    "_id": "647f300c2a461cc031f23b2d",
+    "question": "A farmer has 17 sheep and all but nine die, How many are left?",
+    "answer": "Nine",
+    "a": "None",
+    "b": "Nine",
+    "c": "Eight",
+    "d": "Seventeen",
+    "createdAt": "2023-06-06T13:09:32.295Z",
+    "updatedAt": "2023-06-06T13:09:32.295Z",
+    "__v": 0
+  },
+  {
+    "_id": "647f30682a461cc031f23b31",
+    "question": "Before mount Everest was discovered, which was the hishest montain in the world?",
+    "answer": "Mount Everest",
+    "a": "Mount Oliver",
+    "b": "Mount Lhotse",
+    "c": "Mount Malolu",
+    "d": "Mount Everest",
+    "createdAt": "2023-06-06T13:11:04.886Z",
+    "updatedAt": "2023-06-06T13:11:04.886Z",
+    "__v": 0
+  },
+  {
+    "_id": "647f30be2a461cc031f23b35",
+    "question": "In a year there are 12 months. Seven months have 31 days. How many months have 28 days?",
+    "answer": "All the months",
+    "a": "All the months",
+    "b": "None of the months",
+    "c": "Five of the months",
+    "d": "Just one month",
+    "createdAt": "2023-06-06T13:12:30.299Z",
+    "updatedAt": "2023-06-06T13:12:30.299Z",
+    "__v": 0
+  },
+  {
+    "_id": "647f31462a461cc031f23b39",
+    "question": "When was the first e-mail sent?",
+    "answer": "1969",
+    "a": "1971",
+    "b": "1974",
+    "c": "1963",
+    "d": "1969",
+    "createdAt": "2023-06-06T13:14:46.446Z",
+    "updatedAt": "2023-06-06T13:14:46.446Z",
+    "__v": 0
+  },
+  {
+    "_id": "647f315e2a461cc031f23b3f",
+    "question": "What is Flat as a Leaf, Round as a ring, has two eyes, can't see a thing. what is it?",
+    "answer": "Button",
+    "a": "Map",
+    "b": "Button",
+    "c": "Laptop",
+    "d": "Nothing",
+    "createdAt": "2023-06-06T13:15:10.643Z",
+    "updatedAt": "2023-06-06T13:15:10.643Z",
+    "__v": 0
+  }
+]

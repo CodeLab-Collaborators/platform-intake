@@ -1,22 +1,20 @@
 import React, { useContext } from 'react'
 import { GlobalContext } from '../../global/GlobalProvider'
 import styled from 'styled-components'
+import logo from "../../assets/logo.png"
+import { Link } from 'react-router-dom'
 
 const Header = () => {
-    const { userState } = useContext(GlobalContext)
-
+    const { userState }: any = useContext(GlobalContext)
+    console.log((userState?.name!))
     return (
         <div>
             <Container>
                 <Main>
-                    <Logo>Looo</Logo>
-                    <NavSide>
-                        <Profile />
-                        <Start>
-                            <Name>name</Name>
-                            <Log>LogOut</Log>
-                        </Start>
-                    </NavSide>
+                    <Link to="/"><Logo src={logo} /></Link>
+
+                    <Button to="/sign-up" >Register</Button>
+
                 </Main>
             </Container>
         </div>
@@ -25,40 +23,29 @@ const Header = () => {
 
 export default Header
 
-const Start = styled.div`
-display: flex;
-align-items: center;
-flex-direction: column;
-`
-
-const Log = styled.div`
-margin: 0 5px;
-padding: 6px 15px;
-background-color: #fff;
-transition:all 350ms ;
-color: #0241b7;
-border-radius: 3px;
-font-weight: 900;
-font-size: 12px;
-text-transform: uppercase;
-
-`
-
-const Name = styled.div`
-margin: 0 5px
-`
-
-const Profile = styled.div``
-
-const NavSide = styled.div`
-display: flex;
-`
-
-const Logo = styled.div`
+const Logo = styled.img`
 font-size: 20px;
 font-weight: 700;
+height:50px;
 
 `
+
+const Button = styled(Link)`
+text-decoration: none;
+font-weight: 700;
+text-transform: uppercase;
+font-size: 12px;
+padding: 10px 20px;
+border-radius: 3px;
+background: #fff;
+color: black;
+transition: all 350ms;
+:hover{
+    cursor: pointer;
+    transform: translate(0, -5px);
+}
+`
+
 
 const Main = styled.div`
 display: flex;
@@ -71,7 +58,9 @@ const Container = styled.div`
 display: flex;
 justify-content: center;
 width:100%;
-background-color: #0241b7;
+background-color: black;
 color:white;
-height: 70px
+height: 70px;
+position: fixed;
+z-index: 100
 `

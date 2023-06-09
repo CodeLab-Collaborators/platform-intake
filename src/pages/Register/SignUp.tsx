@@ -1,59 +1,54 @@
-
+import { useState } from "react"
 import styled from 'styled-components'
-import { Link } from "react-router-dom"
-import { FcGoogle } from "react-icons/fc"
-import { AiOutlineTwitter } from "react-icons/ai"
+import { useNavigate } from "react-router-dom"
 import Button from '../../components/static/Button'
-import InputProps from '../../components/reUse/inputs/InputProps'
-import { GlobalContext } from '../../global/GlobalProvider'
-import { useContext, useState } from 'react'
+
+import Swal from "sweetalert2";
+import { registerUser } from "../../utils/APIs"
+import Loading from "../../utils/LoadState";
+import { useCreateCandidate } from "../../hooks/useCandidate";
+
 
 const SignUp = () => {
-    const {
-        actualName,
-
-        actualEmail,
-
-        actualPassword,
-
-        setUserState,
-
-        setActualImage
-
-    } = useContext(GlobalContext)
+    const navigate = useNavigate()
+    const mutate = useCreateCandidate()
 
     const [image, setImage] = useState<string>("")
+    const [avatar, setAvatar] = useState<string>("")
+    const [email, setEmail] = useState<string>("")
+    const [phone, setPhone] = useState<string>("")
+    const [interest, setInterest] = useState<string>("")
+    const [address, setAddress] = useState<string>("")
+    const [name, setName] = useState<string>("")
+    const [profile, setProfile] = useState<string>("")
+    const [loading, setLoading] = useState<boolean>(false)
 
     const onHandle = (e: any) => {
         const file = e.target.files[0]
         const save = URL.createObjectURL(file)
+        setAvatar(file)
         setImage(save)
 
     }
 
+    const formData = new FormData()
+    formData.append('email', email)
+    formData.append('interest', interest)
+    formData.append('phone', phone)
+    formData.append('address', address)
+    formData.append('profile', profile)
+    formData.append('name', name)
+    formData.append('avatar', avatar)
+
+
+
     return (
-        <div>
+        <div style={{ padding: "100px 0px" }}>
+            {
+                loading ? <Loading /> : null
+            }
             <Container>
                 <Main>
-                    <Title>Sign Up</Title>
-
-                    <ButtonHolder>
-                        <Button
-                            icon={<FcGoogle />}
-                            title="Google"
-                        />
-                        <Button
-                            icon={<AiOutlineTwitter />}
-                            title="Twitter"
-                        />
-                    </ButtonHolder>
-
-                    <Display>
-                        <Line />
-                        <Text>Or continue with email</Text>
-                        <Line />
-                    </Display>
-
                     <ImageHolder>
                         <Image
 
@@ -71,47 +66,108 @@ const SignUp = () => {
                         >Upload Image</ImageLabel>
                     </ImageHolder>
 
-                    <InputProps
-                        name
-                        name1="Name"
-                        name2="Enter your Name"
 
-                        email
-                        email1="Email"
-                        email2="Please Enter your Email"
+                    <InputHolder>
+                        <Text>Name <p>*</p></Text>
+                        <Input
+                            placeholder={`Enter your name`}
+                            required
+                            value={name}
+                            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                                setName(e.target.value)
+                            }}
+                        />
+                    </InputHolder>
 
-                        password
-                        password1="password"
-                        password2="Please Enter your Password"
+                    <InputHolder>
+                        <Text>Email <p>*</p></Text>
+                        <Input
+                            placeholder={`Enter your Email`}
+                            type='email'
+                            required
+                            value={email}
+                            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                                setEmail(e.target.value)
+                            }}
+                        />
+                    </InputHolder>
+
+                    <InputHolder>
+                        <Text>Interest <p>*</p></Text>
+                        <Input
+                            placeholder={`Enter your Interest`}
+                            type='text'
+                            required
+                            value={interest}
+                            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                                setInterest(e.target.value)
+                            }}
+                        />
+                    </InputHolder>
+
+                    <InputHolder>
+                        <Text>Phone Number <p>*</p></Text>
+                        <Input
+                            placeholder={`Enter your Phone`}
+                            type='text'
+                            required
+                            value={phone}
+                            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                                setPhone(e.target.value)
+                            }}
+                        />
+                    </InputHolder>
+
+                    <InputHolder>
+                        <Text>Address <p>*</p></Text>
+                        <Input
+                            placeholder={`Enter your Address`}
+                            type='address'
+                            required
+                            value={address}
+                            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                                setAddress(e.target.value)
+                            }}
+                        />
+                    </InputHolder>
+
+                    <InputHolder>
+                        <Text>Profile <p>*</p></Text>
+                        <InputArea
+                            placeholder={`Enter your Profile`}
+                            // type='textarea'
+                            required
+                            value={profile}
+                            onChange={(e: any) => {
+                                setProfile(e.target.value)
+                            }}
+                        />
+                    </InputHolder>
 
 
-                        // confirm
-                        // confirm1="password"
-                        // confirm2="Please confirm your Password"
-                    />
-
+                    <br />
                     <ButtonHolder>
-                        <Text2 to="/sign-in" >Already have an account? Sign in</Text2>
-
                         <Space />
-                        <Link to="/sign-in" style={{ textDecoration: "none" }}>
-
-                            <Button
-                                title="Sign Up"
-                                bg="#228be6"
-                                m=''
-                                color="white"
-                                onClick={() => {
-
-                                    setUserState!({
-                                        name: actualName,
-                                        email: actualEmail,
-                                        password: actualPassword,
-                                        image: image
+                        <Button
+                            title="Sign Up"
+                            bg="purple"
+                            m=''
+                            color="white"
+                            onClick={() => {
+                                setLoading(true)
+                                registerUser(setLoading, formData).then(() => {
+                                    Swal.fire({
+                                        title: `User has been registered successfully`,
+                                        icon: "success",
+                                        timer: 3000,
+                                        timerProgressBar: true,
+                                    }).then(() => {
+                                        navigate("/")
                                     })
-                                }}
-                            />
-                        </Link>
+                                })
+                                mutate()
+                            }}
+                        />
                     </ButtonHolder>
                 </Main>
             </Container>
@@ -120,6 +176,68 @@ const SignUp = () => {
 }
 
 export default SignUp
+
+
+const InputArea = styled.textarea`
+outline: none;
+border:1px solid silver;
+border-radius: 4px;
+width: 280px;
+height: 185px;
+resize: none;
+padding-left: 10px;
+padding-top: 10px;
+margin-top:5px;
+font-size: 12px;
+
+:focus{
+    outline:1px solid #228BE6;
+    border: 1px solid transparent;
+}
+
+::placeholder{
+    color: silver;
+    font-family: Poppins;
+}
+`
+
+const Input = styled.input`
+outline: none;
+border:1px solid silver;
+border-radius: 4px;
+width: 280px;
+height: 35px;
+padding-left: 10px;
+margin-top:5px;
+font-size: 12px;
+:focus{
+    outline:1px solid #228BE6;
+    border: 1px solid transparent;
+}
+
+::placeholder{
+    color: silver;
+    font-family: Poppins;
+}
+`
+
+const Text = styled.div`
+display:flex;
+font-weight: 700;
+color: rgba(0,0,0,0.6);
+margin:0;
+
+font-size: 12px;
+p{
+    margin-left: 3px;
+    margin-top:0;
+    margin-bottom:0;
+    color: red
+}
+`
+const InputHolder = styled.div`
+margin: 10px 0;
+`
 
 const Image = styled.img`
 width: 80px;
@@ -160,44 +278,13 @@ const Space = styled.div`
 flex: 1
 `
 
-
-const Title = styled.div`
-font-weight: bold;
-font-size: 24px;
-margin: 20px 0;
-`
-
-const Line = styled.div`
-border-bottom: 1px solid silver;
-width: 25%;
-
-`
-
-const Text2 = styled(Link)`
-font-size: 12px;
-margin-bottom: 16px;
-color: black;
-text-decoration: none;
-`
-
-const Text = styled.div`
-font-size: 12px;
-margin: 0 5px;
-`
-
-const Display = styled.div`
-display: flex;
-justify-content: center;
-align-items: center;
-`
-
 const ButtonHolder = styled.div`
 display: flex;
 justify-content: center;
 align-items: center;
 `
 const Main = styled.div`
-padding: 20px 20px;
+padding: 10px 20px;
 box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
 border-radius:5px;
 `
@@ -206,5 +293,5 @@ const Container = styled.div`
 display:flex;
 align-items: center;
 justify-content: center;
-height: 100vh
+min-height: 120vh
 `

@@ -57,7 +57,9 @@ const InputProps: React.FC<iInPut> = ({
             }
 
             {
-                email ? <InputHolder>
+                email ?
+
+                    <InputHolder>
                     <Text>{email1} <p>*</p></Text>
                     <Input
                         placeholder={`${email2}`}

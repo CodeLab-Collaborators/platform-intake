@@ -107,7 +107,7 @@ margin: 20px 0;
 
 const Line = styled.div`
 border-bottom: 1px solid silver;
-width: 28%;
+width: 25%;
 
 `
 

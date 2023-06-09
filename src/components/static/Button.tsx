@@ -1,6 +1,6 @@
 
 import styled from 'styled-components'
-import { iButton } from '../../utils/interfaces'
+import { iBut, iButton } from '../../utils/interfaces'
 
 
 

@@ -60,3 +60,64 @@ export interface iUser {
     password?: string;
     image?: string;
 }
+
+
+export interface iButton {
+    title?: string;
+    onClick?: () => void;
+    bg?: string;
+    br?: string;
+    tx?: string;
+}
+
+export interface iBut {
+    bg?: string;
+    ll?: string;
+    link?: boolean;
+    title?: string;
+    tc?: string;
+    mmm?: string;
+    onClick?: () => void
+}
+
+
+export interface iDiv {
+    src?: string,
+    text?: string,
+}
+
+export interface iCard {
+    logo?: string;
+    src?: string;
+    top?: string;
+    sub?: string;
+    bb?: string;
+    rr?: string;
+    r?: string;
+}
+
+export interface iMage {
+    src?: string
+    h?: string
+}
+
+export interface iCard1 {
+    subText?: string;
+    mainText?: string;
+    image?: string;
+    h?: string;
+    ml?: string;
+    mt?: string;
+    m?: string;
+
+}
+
+
+
+export interface iFeature {
+    rr?: string;
+    title?: string;
+    sub?: string;
+    but?: string;
+    src?: string;
+}

@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "CodeLab Intake",
+  "name": "A web platform for CodeLab new students intake",
   "icons": [
     {
       "src": "favicon.ico",

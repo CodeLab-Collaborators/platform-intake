@@ -1,1 +1,9 @@
 declare module "*./asset";
+declare module "*moment";
+declare module "*sweetalert2";
+declare module "*axios";
+declare module "*swr";
+declare module "*flowbite-react";
+declare module "*react-vertical-timeline-component";
+declare module "*./src/assets";
+declare module "*react-spinners/ScaleLoader";
