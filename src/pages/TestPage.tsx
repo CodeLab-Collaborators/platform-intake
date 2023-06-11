@@ -4,8 +4,6 @@ import LeftScreenPage from './LeftScreenPage'
 import AllQuestion from '../utils/Questions/AllQuestions'
 
 const TestPage = () => {
-    // const { toggle } = useContext(ContextState)
-
     return (
         <Wrapper>
             <Container w="0px" >

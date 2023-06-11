@@ -31,7 +31,7 @@ const View = () => {
                                         </Top>
 
                                         <Story>
-                                            Turn idle users into habitues with timely and personalized push notifications, email, SMS, and more for just ₦3 per Unit across all Networks in the Country!
+                                            {props.profile}
                                         </Story>
 
                                         <Time>
@@ -174,6 +174,7 @@ const Container = styled.div`
 width: 100%;
 display: flex;
 justify-content: center;
+min-height: 70vh;
 `
 
 const MainContainer = styled.div`
@@ -184,7 +185,4 @@ background: radial-gradient(
 );
 background-position: 0% 0%;
 background-size: 3vmin 3vmin;
-
-    
-
 `

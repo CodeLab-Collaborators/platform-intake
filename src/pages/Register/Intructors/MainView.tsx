@@ -33,7 +33,7 @@ const MainView = () => {
 
 
                             data
-                                .filter((val: any) => {
+                                ?.filter((val: any) => {
                                     if (state === "") {
                                         return val;
                                     } else if (val.name.toLowerCase().includes(state.toLowerCase())) {
@@ -57,7 +57,7 @@ const MainView = () => {
                                             </Top>
 
                                             <Story>
-                                                Turn idle users into habitues with timely and personalized push notifications, email, SMS, and more for just ₦3 per Unit across all Networks in the Country!
+                                               {props.profile}
                                             </Story>
 
                                             <Time>
@@ -283,7 +283,8 @@ flex-direction:column;
 const Container = styled.div`
 width: 100%;
 display: flex;
-justify-content: center;
+justify-content: center;;
+min-height: 70vh;
 `
 
 const MainContainer = styled.div`

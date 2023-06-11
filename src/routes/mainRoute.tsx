@@ -1,7 +1,6 @@
 import { createBrowserRouter } from "react-router-dom"
 import Layout from "../components/block/Layout"
 import View from "../pages/View"
-import Error from "../error/Error"
 import SignUp from "../pages/Register/SignUp"
 import SignIn from "../pages/Register/SignIn"
 import ForgotPassword from "../pages/Register/ForgotPassword"
@@ -18,6 +17,7 @@ import InstructorsView from "../pages/Register/Intructors/IntructorsView"
 import LogicalScreen from "../pages/Register/Intructors/LogicalScore"
 import LeadershipScreen from "../pages/Register/Intructors/LeadershipScreen"
 import PsychologicalScreen from "../pages/Register/Intructors/PsychologicalScreen"
+import Error2 from "../error/Error2"
 
 export const mainRoute = createBrowserRouter([
     {
@@ -50,7 +50,7 @@ export const mainRoute = createBrowserRouter([
             },
             {
                 path: "*",
-                element: <Error />
+                element: <Error2 />
             },
         ]
     },
@@ -77,13 +77,13 @@ export const mainRoute = createBrowserRouter([
                 element: <TimelineElements />
             }, {
                 path: "*",
-                element: <Error />
+                element: <Error2 />
             },
         ]
     },
 
     {
-        path: "/intructors",
+        path: "/instructors",
         element: <IntructorsLayout />,
         children: [
             {
@@ -117,7 +117,7 @@ export const mainRoute = createBrowserRouter([
                 </InstructorsView>
             }, {
                 path: "*",
-                element: <Error />
+                element: <Error2 />
             },
 
         ]

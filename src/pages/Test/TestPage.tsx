@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import img1 from "../../assets/loB.png";
+import img1 from "../../assets/log.png";
 import { useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import Loading from "../../utils/LoadState";
@@ -17,8 +17,6 @@ const StartTest = () => {
 
 	const [users, setUser] = useRecoilState(UserData);
 
-	console.log(users)
-
 	return (
 		<div>
 			{loading ? <Loading /> : null}
@@ -26,7 +24,9 @@ const StartTest = () => {
 				<Wrapper>
 					<First>
 						<LogoHold>
-							<Logo src={img1} />
+							<Logo
+								alt=""
+								src={img1} />
 						</LogoHold>
 						<SignUpHold>
 							<h1>Start Test</h1>
@@ -197,8 +197,15 @@ const LogoHold = styled.div`
 
 const Logo = styled.img`
 	height: 100px;
+	/* width:300px; */
+	object-fit: contain;
 	margin-top: 10px;
 `;
+
+const Image = styled.img`
+height: 130px;
+margin-top: 10px;
+`
 
 const Second = styled.div`
 	height: 500px;

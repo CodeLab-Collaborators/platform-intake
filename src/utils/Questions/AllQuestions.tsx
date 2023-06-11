@@ -16,42 +16,18 @@ import { UserData } from "../../global/AtomState";
 import { useQuestions } from "../../hooks/useCandidate";
 
 
-const url = "https://codelabintakeapi.onrender.com";
 
 const AllQuestion = () => {
   const user = useRecoilValue(UserData);
   const questions = useQuestions();
 
-  // console.log(user)
 
   const [answer, setAnswer] = useState({});
-  const [testData, setTestData] = useState<any>({});
-  const [allMapTest, setAllMapTest] = useState<any>([]);
-
   const [min, setMin] = React.useState(0);
   const [secs, setSecs] = React.useState(0);
   const [User, setUser] = useRecoilState(UserData);
 
-
-  const local = "http://localhost:2255";
-
-  const fetchData = async () => {
-    const newURL = `${url}/api/test/viewTest`;
-    await axios.get(newURL).then((res) => {
-      setTestData(res?.data?.data[0]);
-    });
-  };
-
-  const page = Math.floor(Math.random() * 18);
-
-  const fetchTestData = async () => {
-    const newURL = `${url}/api/test/viewTested?page=${page}`;
-
-    await axios.get(newURL).then((res) => {
-      setAllMapTest(res?.data?.data);
-      // console.log(testData);
-    });
-  };
+  const url = "https://interview-zu4p.onrender.com"
 
   const [loading, setLoading] = useState(false);
 
@@ -65,7 +41,7 @@ const AllQuestion = () => {
   let correctAnswer: any = [];
   let score = 0;
   let status = "";
-  // 240000
+
 
   const StartTimer = () => {
     const CountDown = Date.now() + 240000;
@@ -112,10 +88,10 @@ const AllQuestion = () => {
   };
 
   const submitTest = async () => {
-    // setLoading(true);
+    setLoading(true);
 
-    for (let i = 0; i < dataTest.length; i++) {
-      correctAnswer.push(dataTest[i].answer);
+    for (let i = 0; i < questions.length; i++) {
+      correctAnswer.push(questions[i].answer);
 
       if (correctAnswer[i] === Object.values(answer)[i]) {
         score++;
@@ -137,14 +113,10 @@ const AllQuestion = () => {
       total_marks: `${10 * score}`,
       total_Question: "10",
     };
-
-    // console.log(correctAnswer)
-    // console.log(data)
-    // console.log(answer)
-    // console.log(score)
-
+    console.log("showing: ", answer)
+    console.log("correctAnswer: ", correctAnswer)
     axios
-      .patch(`${local}/api/editLogic/${user._id}`, {
+      .patch(`${url}/api/logical-score/${user._id}`, {
         logic: score * 10,
       })
       .then(() => {
@@ -157,22 +129,19 @@ const AllQuestion = () => {
           clearInterval(min);
           setMin(0);
           setSecs(0);
-          window.location.assign("/auth/start-test");
-        });
+          setLoading(false);
 
-        setLoading(false);
+        }).then(() => {
+          window.location.assign("/auth/start-test");
+        })
+
+
       });
   };
 
   useEffect(() => {
-    fetchData();
-    fetchTestData();
-
-    if (testData && allMapTest.length <= 1) {
-      StartTimer();
-      // submitTest();
-    }
-  }, [answer]);
+    StartTimer();
+  }, []);
 
 
   return (
@@ -183,28 +152,28 @@ const AllQuestion = () => {
           <DetailText>
             <Container1>
               <Top1>
-                <Title>Dashboard</Title>
+                <Title>Interview Test Dashboard</Title>
                 <Title> {moment(Date.now()).format('dddd')}, {moment(Date.now()).format("MMM Do YY")}</Title>
               </Top1>
               <TopCard>
                 <Content>
 
-                  {/* <TopHead>Welcome back Peter</TopHead> */}
-
                   <SubTitle>
                     <Rower>
                       <Row1>
                         <DetCard>
+
                           <CrdHold>
                             <Tit>
                               {" "}
-                              <IoHourglassOutline color="white" size="15px" style={{
+                              <AiTwotoneCalendar color="white" size="15px" style={{
                                 marginTop: "-10px"
                               }} />{" "}
-                              <span>Finish Time</span>{" "}
+                              <span>Starts</span>{" "}
                             </Tit>
-                            <Cont>{moment(Date.now() + 240000).format("LLLL")}</Cont>
+                            <Cont>{moment(Date.now()).format("LLLL")}</Cont>
                           </CrdHold>
+
                         </DetCard>
                         <DetCard>
                           <CrdHold>
@@ -228,12 +197,12 @@ const AllQuestion = () => {
                           <CrdHold>
                             <Tit>
                               {" "}
-                              <AiTwotoneCalendar color="white" size="15px" style={{
+                              <IoHourglassOutline color="white" size="15px" style={{
                                 marginTop: "-10px"
                               }} />{" "}
-                              <span>Starts</span>{" "}
+                              <span>Finish Time</span>{" "}
                             </Tit>
-                            <Cont>{moment(Date.now()).format("LLLL")}</Cont>
+                            <Cont>{moment(Date.now() + 240000).format("LLLL")}</Cont>
                           </CrdHold>
                         </DetCard>
                         <DetCard>
@@ -287,7 +256,7 @@ const AllQuestion = () => {
         <Buttom>
           <InstQues>
             <QuestTitle> Interview Questions</QuestTitle>
-            <Instruct>{testData.instruction}</Instruct>
+            <Instruct>This is a simple Test from CodeLab, All the BEST</Instruct>
           </InstQues>
 
           {questions?.map((props: any, i: any) => (
@@ -355,10 +324,13 @@ const AllQuestion = () => {
             </MainQuestions>
           ))}
 
-          <MyButton onClick={submitTest}>Submit</MyButton>
+          <MyButton onClick={() => {
+            submitTest()
+            console.log("Picking...@")
+          }}>Submit</MyButton>
         </Buttom>
 
-        <Answers> </Answers>
+
       </Wrapper>
 
       <TimerCount b={min === 0 && secs <= 30 ? "red" : "purple"}>
@@ -568,11 +540,21 @@ const No = styled.div`
 const Question = styled.div``;
 const Quest = styled.div`
   margin-bottom: 10px;
+  font-weight: 600;
+  font-size: 16px;
 `;
 const Answers = styled.div``;
 const Ans = styled.div`
   margin-left: -3px;
   margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+
+  label{
+    margin-left: 5px;
+    margin-top: 2px;
+    font-weight: 500;
+  };
 `;
 
 

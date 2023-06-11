@@ -7,10 +7,10 @@ const InstructorsView: React.FC<PropsWithChildren> = ({ children }) => {
         <div>
             <Container>
                 <Buttons>
-                    <NavButton to="/intructors" >Main View</NavButton>
-                    <NavButton to="/intructors/logical">Logical Score</NavButton>
-                    <NavButton to="/intructors/leadership">Leadership Score</NavButton>
-                    <NavButton to="/intructors/psychological">Psychological Score</NavButton>
+                    <NavButton to="/instructors" >Main View</NavButton>
+                    <NavButton to="/instructors/logical">Logical Score</NavButton>
+                    <NavButton to="/instructors/leadership">Leadership Score</NavButton>
+                    <NavButton to="/instructors/psychological">Psychological Score</NavButton>
                 </Buttons>
 
                 <div>
