@@ -9,25 +9,22 @@ import axios from "axios";
 import moment from "moment";
 import Swal from "sweetalert2";
 import Loading from "../LoadState";
-import pix from "../../assets/ani.gif"
-
+import pix from "../../assets/ani.gif";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { UserData } from "../../global/AtomState";
 import { useQuestions } from "../../hooks/useCandidate";
-
-
+import { CountdownCircleTimer } from "react-countdown-circle-timer";
 
 const AllQuestion = () => {
   const user = useRecoilValue(UserData);
   const questions = useQuestions();
-
 
   const [answer, setAnswer] = useState({});
   const [min, setMin] = React.useState(0);
   const [secs, setSecs] = React.useState(0);
   const [User, setUser] = useRecoilState(UserData);
 
-  const url = "https://interview-zu4p.onrender.com"
+  const url = "https://interview-zu4p.onrender.com";
 
   const [loading, setLoading] = useState(false);
 
@@ -41,7 +38,6 @@ const AllQuestion = () => {
   let correctAnswer: any = [];
   let score = 0;
   let status = "";
-
 
   const StartTimer = () => {
     const CountDown = Date.now() + 240000;
@@ -59,10 +55,6 @@ const AllQuestion = () => {
         setMin(0);
         setSecs(0);
 
-        // submitTest();
-
-        // Submitted
-
         for (let i = 0; i < dataTest.length; i++) {
           correctAnswer.push(dataTest[i].answer);
 
@@ -71,15 +63,10 @@ const AllQuestion = () => {
           }
         }
 
-        // console.log("first correct: ", correctAnswer[1])
         console.log("first answer: ", answer);
-        // console.log("")
-        // console.log("first answer: ", Object.values(answer)[1])
 
         if (score >= 5) status = "Excellent";
         else status = "Can still do Better";
-
-
       } else {
         setMin(minutes);
         setSecs(seconds);
@@ -113,8 +100,8 @@ const AllQuestion = () => {
       total_marks: `${10 * score}`,
       total_Question: "10",
     };
-    console.log("showing: ", answer)
-    console.log("correctAnswer: ", correctAnswer)
+    console.log("showing: ", answer);
+    console.log("correctAnswer: ", correctAnswer);
     axios
       .patch(`${url}/api/logical-score/${user._id}`, {
         logic: score * 10,
@@ -124,18 +111,17 @@ const AllQuestion = () => {
           title: "You have Concluded your IQ test.",
           icon: "success",
           text: `your score is : ${score * 10}`,
-        }).then(() => {
-          setUser({});
-          clearInterval(min);
-          setMin(0);
-          setSecs(0);
-          setLoading(false);
-
-        }).then(() => {
-          window.location.assign("/auth/start-test");
         })
-
-
+          .then(() => {
+            setUser({});
+            clearInterval(min);
+            setMin(0);
+            setSecs(0);
+            setLoading(false);
+          })
+          .then(() => {
+            window.location.assign("/auth/start-test");
+          });
       });
   };
 
@@ -143,9 +129,9 @@ const AllQuestion = () => {
     StartTimer();
   }, []);
 
-
   return (
     <Container>
+      {/* <Loading /> */}
       {loading ? <Loading /> : null}
       <Wrapper>
         <Top>
@@ -153,27 +139,32 @@ const AllQuestion = () => {
             <Container1>
               <Top1>
                 <Title>Interview Test Dashboard</Title>
-                <Title> {moment(Date.now()).format('dddd')}, {moment(Date.now()).format("MMM Do YY")}</Title>
+                <Title>
+                  {" "}
+                  {moment(Date.now()).format("dddd")},{" "}
+                  {moment(Date.now()).format("MMM Do YY")}
+                </Title>
               </Top1>
               <TopCard>
                 <Content>
-
                   <SubTitle>
                     <Rower>
                       <Row1>
                         <DetCard>
-
                           <CrdHold>
                             <Tit>
                               {" "}
-                              <AiTwotoneCalendar color="white" size="15px" style={{
-                                marginTop: "-10px"
-                              }} />{" "}
+                              <AiTwotoneCalendar
+                                color="white"
+                                size="15px"
+                                style={{
+                                  marginTop: "-10px",
+                                }}
+                              />{" "}
                               <span>Starts</span>{" "}
                             </Tit>
                             <Cont>{moment(Date.now()).format("LLLL")}</Cont>
                           </CrdHold>
-
                         </DetCard>
                         <DetCard>
                           <CrdHold>
@@ -183,7 +174,7 @@ const AllQuestion = () => {
                                 color="white"
                                 size="15px"
                                 style={{
-                                  marginTop: "-10px"
+                                  marginTop: "-10px",
                                 }}
                               />{" "}
                               <span>Total Questions</span>{" "}
@@ -197,38 +188,51 @@ const AllQuestion = () => {
                           <CrdHold>
                             <Tit>
                               {" "}
-                              <IoHourglassOutline color="white" size="15px" style={{
-                                marginTop: "-10px"
-                              }} />{" "}
+                              <IoHourglassOutline
+                                color="white"
+                                size="15px"
+                                style={{
+                                  marginTop: "-10px",
+                                }}
+                              />{" "}
                               <span>Finish Time</span>{" "}
                             </Tit>
-                            <Cont>{moment(Date.now() + 240000).format("LLLL")}</Cont>
+                            <Cont>
+                              {moment(Date.now() + 240000).format("LLLL")}
+                            </Cont>
                           </CrdHold>
                         </DetCard>
                         <DetCard>
                           <CrdHold>
                             <Tit>
                               {" "}
-                              <BiTimeFive color="white" size="15px" style={{
-                                marginTop: "-10px"
-                              }} />{" "}
+                              <BiTimeFive
+                                color="white"
+                                size="15px"
+                                style={{
+                                  marginTop: "-10px",
+                                }}
+                              />{" "}
                               <span>Duration</span>{" "}
                             </Tit>
-                            <Cont style={{ display: "flex", alignItems: "center" }}>
+                            <Cont
+                              style={{ display: "flex", alignItems: "center" }}
+                            >
                               4mins
                               <Cont
                                 style={{
                                   marginLeft: "100px",
-                                  fontWeight: "bold",
-                                  fontSize: "20px",
+                                  // fontWeight: "bold",
+                                  fontSize: "15px",
                                   display: "flex",
                                   alignItems: "center",
-                                }}>
-                                {min} :{" "}
+                                }}
+                              >
+                                {min}mins :{" "}
                                 {min === 0 && secs <= 30 ? (
                                   <div style={{ color: "red" }}>{secs}</div>
                                 ) : (
-                                  <div>{secs}</div>
+                                  <div>{secs}secs</div>
                                 )}
                               </Cont>
                             </Cont>
@@ -236,27 +240,23 @@ const AllQuestion = () => {
                         </DetCard>
                       </Row1>
                     </Rower>
-
                   </SubTitle>
-
                 </Content>
 
                 <Image src={pix} />
               </TopCard>
 
-
               <br />
-
             </Container1>
           </DetailText>
-
         </Top>
-
 
         <Buttom>
           <InstQues>
             <QuestTitle> Interview Questions</QuestTitle>
-            <Instruct>This is a simple Test from CodeLab, All the BEST</Instruct>
+            <Instruct>
+              This is a simple Test from CodeLab, All the BEST
+            </Instruct>
           </InstQues>
 
           {questions?.map((props: any, i: any) => (
@@ -274,7 +274,6 @@ const AllQuestion = () => {
                         value={props.a}
                         onChange={(e) => {
                           pickAnswer(e);
-
                         }}
                       />
                       <label htmlFor={props.a}>{props.a}</label>
@@ -287,7 +286,6 @@ const AllQuestion = () => {
                         value={props.b}
                         onChange={(e) => {
                           pickAnswer(e);
-
                         }}
                       />
                       <label htmlFor={props.b}>{props.b}</label>
@@ -300,7 +298,6 @@ const AllQuestion = () => {
                         value={props.c}
                         onChange={(e) => {
                           pickAnswer(e);
-
                         }}
                       />
                       <label htmlFor={props.c}>{props.c}</label>
@@ -313,7 +310,6 @@ const AllQuestion = () => {
                         value={props.d}
                         onChange={(e) => {
                           pickAnswer(e);
-
                         }}
                       />
                       <label htmlFor={props.d}>{props.d}</label>
@@ -324,28 +320,30 @@ const AllQuestion = () => {
             </MainQuestions>
           ))}
 
-          <MyButton onClick={() => {
-            submitTest()
-            console.log("Picking...@")
-          }}>Submit</MyButton>
+          <MyButton
+            onClick={() => {
+              submitTest();
+              console.log("Picking...@");
+            }}
+          >
+            Submit
+          </MyButton>
         </Buttom>
-
-
       </Wrapper>
 
-      <TimerCount b={min === 0 && secs <= 30 ? "red" : "purple"}>
+      {/* <TimerCount b={min === 0 && secs <= 30 ? "red" : "purple"}>
         <h6 style={{ margin: "0" }}>Timer</h6>
         {min === 0 && secs <= 30 ? (
           <div style={{ display: "flex", alignItems: "center", color: "red" }}>
             <div
               style={{
-
                 fontWeight: "bold",
                 fontSize: "20px",
                 display: "flex",
                 alignItems: "center",
                 margin: "0",
-              }}>
+              }}
+            >
               {min} :{" "}
               {min === 0 && secs <= 30 ? (
                 <div style={{ color: "red" }}>{secs}</div>
@@ -358,18 +356,67 @@ const AllQuestion = () => {
           <div style={{ display: "flex", alignItems: "center" }}>
             <div
               style={{
-
                 fontWeight: "bold",
                 fontSize: "20px",
                 display: "flex",
                 alignItems: "center",
                 margin: "0",
-              }}>
+              }}
+            >
               {min} :<div>{secs}</div>
             </div>
           </div>
         )}
-      </TimerCount>
+      </TimerCount> */}
+
+      <div
+        style={{
+          position: "fixed",
+          bottom: "10px",
+          left: "10px",
+        }}
+      >
+        <CountdownCircleTimer
+          isPlaying
+          duration={240}
+          colors={["#83529A", "#F7B801", "#A30000", "#A30000"]}
+          colorsTime={[7, 5, 2, 0]}
+          size={150}
+        >
+          {({ remainingTime }) =>
+            remainingTime === 0 ? (
+              <div
+                style={{
+                  fontSize: "25px",
+                  fontWeight: "900",
+                  color: "#f30606",
+                }}
+              >
+                Time Up
+              </div>
+            ) : (
+              <div
+                style={{
+                  fontSize: "25px",
+                  fontWeight: "600",
+                  color: "purple",
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                }}
+              >
+                <div style={{ fontSize: "40px", lineHeight: 1 }}>
+                  {remainingTime}
+                </div>
+                <span style={{ fontSize: "20px" }}>
+                  {" "}
+                  {remainingTime < 2 ? "sec" : "secs"} Left
+                </span>
+              </div>
+            )
+          }
+        </CountdownCircleTimer>
+      </div>
     </Container>
   );
 };
@@ -378,7 +425,7 @@ export default AllQuestion;
 
 const Rower = styled.div`
   display: flex;
-`
+`;
 
 const TimerCount = styled.div<{ b: string }>`
   height: 100px;
@@ -387,12 +434,12 @@ const TimerCount = styled.div<{ b: string }>`
   background-color: white;
   position: fixed;
   border: 1px solid ${({ b }) => b};
-  left: 20px;
+  left: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  bottom: 30px;
+  bottom: 50px;
 `;
 
 const MyButton = styled.div`
