@@ -1,7 +1,8 @@
 import Swal from "sweetalert2";
 import axios from "axios"
 
-const url = "https://interview-zu4p.onrender.com"
+// const url = "https://interview-zu4p.onrender.com"
+const url = "https://intake-be10.onrender.com";
 
 export const getQuestions = async () => {
     try {
